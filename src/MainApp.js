@@ -6,15 +6,16 @@ const MainApp = () => {
 
   const [edit, setEdit] = useState({});
   const [developers, setDevelopers] = useState([]);
+  const URL = 'http://localhost:8000/api/developers';
 
   useEffect(() => {
-    fetch('http://localhost:8000/api/developers')
+    fetch(URL)
       .then(response => response.json())
       .then(data => setDevelopers(data[0]))    
   }, [])
 
   return (
-    <UserContext.Provider value={{edit, setEdit, developers, setDevelopers}}>
+    <UserContext.Provider value={{edit, setEdit, developers, setDevelopers, URL}}>
       <Router />
     </UserContext.Provider>
   )

@@ -10,19 +10,19 @@ const UserApp = () => {
   const {developers} = useContext(UserContext);
 
   return (
-      <div className="dashboard-container">
-        <div className="dashboard">
-          <div>
-            <p>Tabla de desarrolladores</p>
-            <Link to='/agregar'>
-              <button>
-                + Agregar
-              </button>
-            </Link>
-          </div>
-          <UserList developers={developers} />
+    <div className="dashboard-container">
+      <div className="dashboard">
+        <div>
+          <p>Tabla de desarrolladores</p>
+          <Link to='/agregar'>
+            <button>
+              + Agregar
+            </button>
+          </Link>
         </div>
+        <UserList developers={developers} />
       </div>
+    </div>
   )
 };
 

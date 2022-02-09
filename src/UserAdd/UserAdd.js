@@ -8,6 +8,16 @@ const UserAdd = () => {
 
   const {setDevelopers} = useContext(UserContext);
 
+  const [desarrollador, setDesarrollador] = useState({
+    nombre: '',
+    puesto: '',
+    profesion: '',
+    tecnologia: ''
+  });
+
+  const [textError, setTextError] = useState(false);
+  const [success, setSuccess] = useState(false);
+
   const positions = [
     { value: 'Frontend', label: 'Frontend' },
     { value: 'Backend', label: 'Backend' },
@@ -23,34 +33,23 @@ const UserAdd = () => {
     { value: 'SQL', label: 'SQL'}
   ]
 
-  const initialState = '';
-
-  const [position, setPosition] = useState(initialState);
-  const [technology, setTechnology] = useState(initialState);
-  const [name, setName] = useState(initialState);
-  const [profession, setProfession] = useState(initialState);
-  const [textError, setTextError] = useState(false);
-  const [success, setSuccess] = useState(false);
-
   const handlePosition = (value) => {
-    setPosition(value)
+    setDesarrollador({...desarrollador, puesto: value.value})
   };
 
   const handleTechnology = (value) => {
-    setTechnology(value)
+    setDesarrollador({...desarrollador, tecnologia: value.value})
   };
 
   const handleSubmit = async(e) => {
     e.preventDefault()
 
-    let body = {
-      nombre: name,
-      profesion: profession,
-      puesto: position.value,
-      tecnologia: technology.value
-    }
+    setSuccess(false)
+    setTextError(false)
 
-    if(name.trim().length <= 3 || profession.trim().length <= 3 ){
+    let body = desarrollador;
+
+    if(desarrollador.nombre.trim().length <= 3 || desarrollador.profesion.trim().length <= 3 ){
       setTextError(true)
     } else {
       setTextError(false)
@@ -76,61 +75,63 @@ const UserAdd = () => {
       .then(response => response.json())
       .then(data => setDevelopers(data[0])) 
 
-      setPosition(initialState);
-      setProfession(initialState);
-      setTechnology(initialState);
-      setName(initialState);
+      setDesarrollador({
+        nombre: '',
+        puesto: '',
+        profesion: '',
+        tecnologia: '',
+      })
     }    
   }
 
   return (
     <div className="add-dashboard-container">
-        <div className="add-dashboard">
-          <div>
-            <p>Agregar nuevo desarrollador</p>
-          </div>
-          <form id="add-form" onSubmit={ handleSubmit }>
-            <div>
-              <div className="add-input-container">
-                <label htmlFor="nombre">Nombre</label>
-                <input type="text" name="nombre" onChange={(e) => {setName(e.target.value)}} value={name} required />
-                <label htmlFor="puesto">Puesto</label>
-                <Select 
-                  options={positions} 
-                  onChange={handlePosition} 
-                  value={position}
-                  placeholder='Selecciona una opción'
-                  name="puesto"
-                />
-              </div>
-              <div className="add-input-container">
-                <label htmlFor="profesion">Profesión</label>
-                <input type="text" name="profesion" onChange={(e) => {setProfession(e.target.value)}} value={profession}  required />
-                <label htmlFor="tecnologia">Tecnología</label>
-                <Select 
-                  options={technologies} 
-                  onChange={handleTechnology} 
-                  value={technology} 
-                  placeholder='Selecciona una opción'
-                  name="tecnologia"
-                />
-              </div>
-            </div>
-            <div className="add-dashboard-button-container">
-                <Link to="/">
-                  <button>
-                      Volver
-                  </button>
-                </Link>
-              <button>
-                Agregar
-              </button>
-            </div>
-          </form>
-        {success ? <p className="success-text">Developer creado con éxito!</p> : null}
-        {textError ? <p className="error-text">- Los campos Nombre y Profesión deben contener más de 3 caracteres</p> : null}
+      <div className="add-dashboard">
+        <div>
+          <p>Agregar nuevo desarrollador</p>
         </div>
+      <form id="add-form" onSubmit={ handleSubmit }>
+        <div>
+          <div className="add-input-container">
+            <label htmlFor="nombre">Nombre</label>
+            <input type="text" name="nombre" onChange={(e) => {setDesarrollador({...desarrollador, nombre: e.target.value})}} value={desarrollador.nombre} required />
+            <label htmlFor="puesto">Puesto</label>
+            <Select 
+              options={positions} 
+              onChange={handlePosition} 
+              value={{value: desarrollador.puesto, label: desarrollador.puesto}}
+              placeholder='Selecciona una opción'
+              name="puesto"
+            />
+          </div>
+          <div className="add-input-container">
+            <label htmlFor="profesion">Profesión</label>
+            <input type="text" name="profesion" onChange={(e) => {setDesarrollador({...desarrollador, profesion: e.target.value})}} value={desarrollador.profesion}  required />
+            <label htmlFor="tecnologia">Tecnología</label>
+            <Select 
+              options={technologies} 
+              onChange={handleTechnology} 
+              value={{value: desarrollador.tecnologia, label: desarrollador.tecnologia}} 
+              placeholder='Selecciona una opción'
+              name="tecnologia"
+            />
+          </div>
+        </div>
+        <div className="add-dashboard-button-container">
+          <Link to="/">
+            <button>
+                Volver
+            </button>
+          </Link>
+          <button>
+            Agregar
+          </button>
+        </div>
+      </form>
+      {success ? <p className="success-text">Developer creado con éxito!</p> : null}
+      {textError ? <p className="error-text">- Los campos Nombre y Profesión deben contener más de 3 caracteres</p> : null}
       </div>
+    </div>
   )
 };
 

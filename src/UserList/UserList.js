@@ -5,26 +5,25 @@ import './userList.css'
 
 const UserList = () => {
 
-  const { setEdit, developers, setDevelopers } = useContext(UserContext);
+  const { setEdit, developers, setDevelopers, URL } = useContext(UserContext);
 
   const navigate = useNavigate();
 
   useEffect( () => {
-    fetch('http://localhost:8000/api/developers')
+    fetch(URL)
       .then(response => response.json())
       .then(data => setDevelopers(data[0]))
-  }, [])
+  }, [URL, setDevelopers])
   
   const handleDelete = (id) => {
-    fetch(`http://localhost:8000/api/developers/delete/${id}`, {
+    fetch(`${URL}/delete/${id}`, {
       method: 'POST',
       body: id
     })   
 
-    fetch('http://localhost:8000/api/developers')
+    fetch(URL)
       .then(response => response.json())
       .then(data => setDevelopers(data[0])) 
-
   }
 
   const handleEdit = (dev) => {
@@ -32,12 +31,10 @@ const UserList = () => {
     navigate('/editar')
   }
 
-
-
   return (
     <div className="user-list-container">
       <table cellSpacing="0">
-        <thead class="fixed-header">
+        <thead className="fixed-header">
           <tr className="user-list-row">
             <th>Nombre</th>
             <th>Profesion</th>
