@@ -10,7 +10,7 @@ const Navbar = () => {
           <p>Marcos Emmanuel</p>
           <p>Admin</p>
         </div>
-        <img src="https://picsum.photos/60/60?random=1" alt="Profile Picture" />
+        <img src="https://picsum.photos/60/60?random=1" alt="Navbar-Profile-Picture" />
       </div>
     </div>
   )

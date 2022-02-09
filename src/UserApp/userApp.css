@@ -1,0 +1,36 @@
+.dashboard-container {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.dashboard {
+  width: 70%;
+  height: 350px;
+  margin-top: 60px;
+  border-radius: 10px;
+  padding: 20px;
+  box-shadow: 1px 1px 30px rgb(238, 235, 235);
+}
+.dashboard > div:first-of-type {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 1px solid rgb(189, 188, 188);
+}
+.dashboard p {
+  font-size: 1.5rem;
+  color: grey;
+}
+.dashboard button {
+  cursor: pointer;
+  border: none;
+  color: white;
+  background: #7367F0;
+  padding: 8px 25px;
+  border-radius: 5px;
+  font-size: 1.1rem;
+}
+.dashboard button:hover {
+  background: #9a92f0;
+}
