@@ -30,7 +30,9 @@ const UserAdd = () => {
     { value: 'Angular', label: 'Angular' },
     { value: 'Next', label: 'Next' },
     { value: 'Vue', label: 'Vue' },
-    { value: 'SQL', label: 'SQL'}
+    { value: 'SQL', label: 'SQL'},
+    { value: 'Laravel', label: 'Laravel' },
+    { value: 'NodeJs', label: 'NodeJs' }
   ]
 
   const handlePosition = (value) => {
