@@ -6,7 +6,6 @@
 }
 .add-dashboard {
   width: 70%;
-  height: 350px;
   margin-top: 60px;
   border-radius: 10px;
   padding: 20px;
@@ -65,7 +64,7 @@
 }
 .add-dashboard-button-container {
   width: 100%;
-  padding-top: 30px;
+  padding: 20px 0;
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -98,7 +97,7 @@
   background: #9a92f0;
 }
 .error-text {
-  margin-top: 20px;
+  margin-top: 10px;
   font-size: 1.2rem;
   color: red;
 }
@@ -109,4 +108,18 @@
 }
 .css-qc6sy-singleValue{
   font-size: 1.4rem;
+}
+@media (max-width: 600px) {
+  .add-dashboard > form > div:first-of-type{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+  .add-dashboard form {
+    padding: 0;
+  }
+  .add-dashboard-container a > button:first-of-type, .add-dashboard-container button:last-of-type {
+    font-size: 1.5rem;
+  }
 }

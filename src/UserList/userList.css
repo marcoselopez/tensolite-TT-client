@@ -1,24 +1,3 @@
-.user-list-container {
-  width: 100%;
-  height: 80%;
-  display: flex;
-  justify-content: center;
-  align-items: flex-start;  
-  overflow-y: scroll;
-}
-.user-list-container table {
-  width: 100%;
-  color: #6E6B7B;
-  font-size: 1.2rem;
-  text-align: left;
-}
-.user-list-container th {
-  background-color: #F3F2F7;
-}
-.user-list-container th, td {  
-  height: 40px;
-  padding-left: 25px;
-}
 .more-options {
   position: relative;
   cursor: pointer;

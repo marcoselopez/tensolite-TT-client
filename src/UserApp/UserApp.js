@@ -20,7 +20,9 @@ const UserApp = () => {
             </button>
           </Link>
         </div>
+        <div className="user-list-container">
         <UserList developers={developers} />
+        </div>
       </div>
     </div>
   )

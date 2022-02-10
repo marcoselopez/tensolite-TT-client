@@ -31,9 +31,8 @@ const UserList = () => {
     navigate('/editar')
   }
 
-  return (
-    <div className="user-list-container">
-      <table cellSpacing="0">
+  return (    
+      <table className="users-table" cellSpacing='0'>
         <thead className="fixed-header">
           <tr className="user-list-row">
             <th>Nombre</th>
@@ -68,7 +67,6 @@ const UserList = () => {
           }
         </tbody>
       </table>
-    </div>
   ) 
 };
 
