@@ -9,6 +9,8 @@ const UserEdit = () => {
 
   const navigate = useNavigate();
 
+  let specials=/[*|\":<>[\]{}`\\()';@&$]/;
+
   const {setDevelopers, edit, URL} = useContext(UserContext);
 
   const [desarrollador, setDesarrollador] = useState({
@@ -31,8 +33,6 @@ const UserEdit = () => {
       tecnologia: edit.tecnologia
     })
   }
-
-  console.log(Object.keys(edit).length)
 
   useEffect(()=> {
     if (Object.keys(edit).length === 0) {
@@ -68,7 +68,9 @@ const UserEdit = () => {
 
     let body = desarrollador;
 
-    if(desarrollador.nombre.trim().length <= 3 || desarrollador.profesion.trim().length <= 3){
+    if(desarrollador.nombre.trim().length <= 3 || desarrollador.nombre.trim().length > 30 || desarrollador.profesion.trim().length <= 3 || desarrollador.profesion.trim().length > 30){
+      setTextError(true)
+    } if (specials.test(desarrollador.nombre.trim()) || specials.test(desarrollador.profesion.trim())) {
       setTextError(true)
     } else {
       setTextError(false) 
