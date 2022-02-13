@@ -9,7 +9,7 @@
   height: 350px;
   margin-top: 60px;
   border-radius: 10px;
-  padding: 20px;
+  padding: 30px 20px 20px 20px;
   box-shadow: 1px 1px 30px rgb(238, 235, 235);
 }
 .dashboard > div:first-of-type {
@@ -17,6 +17,7 @@
   justify-content: space-between;
   align-items: center;
   border-bottom: 1px solid rgb(189, 188, 188);
+  margin-bottom: 10px;
 }
 .dashboard p {
   font-size: 1.5rem;

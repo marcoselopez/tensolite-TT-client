@@ -1,11 +1,13 @@
 import React, { useContext, useEffect, useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import Select from 'react-select';
 
 import { UserContext } from '../UserContext';
 import './userEdit.css';
 
 const UserEdit = () => { 
+
+  const navigate = useNavigate();
 
   const {setDevelopers, edit, URL} = useContext(UserContext);
 
@@ -30,9 +32,14 @@ const UserEdit = () => {
     })
   }
 
+  console.log(Object.keys(edit).length)
+
   useEffect(()=> {
-      fillForm(edit)
-    }, [edit])
+    if (Object.keys(edit).length === 0) {
+      navigate('/')
+    }
+    fillForm(edit)
+  }, [edit])
 
   const positions = [
     { value: 'Frontend', label: 'Frontend' },

@@ -7,7 +7,7 @@ const Navbar = () => {
       <div className="logo">SITENSO</div>
       <div className="profile">
         <div>
-          <p>Marcos Emmanuel</p>
+          <a href="#">Marcos Emmanuel</a>
           <p>Admin</p>
         </div>
         <img src="https://picsum.photos/60/60?random=1" alt="Navbar-Profile-Picture" />

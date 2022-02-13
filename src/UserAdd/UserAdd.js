@@ -6,6 +6,8 @@ import './userAdd.css'
 
 const UserAdd = () => {
 
+  let specials=/[*|\":<>[\]{}`\\()';@&$]/;
+
   const {setDevelopers} = useContext(UserContext);
 
   const [desarrollador, setDesarrollador] = useState({
@@ -51,7 +53,9 @@ const UserAdd = () => {
 
     let body = desarrollador;
 
-    if(desarrollador.nombre.trim().length <= 3 || desarrollador.profesion.trim().length <= 3 ){
+    if(desarrollador.nombre.trim().length <= 3 || desarrollador.nombre.trim().length > 30 || desarrollador.profesion.trim().length <= 3 || desarrollador.profesion.trim().length > 30 ){
+      setTextError(true)
+    } if (specials.test(desarrollador.nombre.trim()) || specials.test(desarrollador.profesion.trim())) {
       setTextError(true)
     } else {
       setTextError(false)
@@ -96,7 +100,7 @@ const UserAdd = () => {
         <div>
           <div className="add-input-container">
             <label htmlFor="nombre">Nombre</label>
-            <input type="text" name="nombre" onChange={(e) => {setDesarrollador({...desarrollador, nombre: e.target.value})}} value={desarrollador.nombre} required />
+            <input type="text" name="nombre" minLength='4' maxLength='25' onChange={(e) => {setDesarrollador({...desarrollador, nombre: e.target.value})}} value={desarrollador.nombre} required />
             <label htmlFor="puesto">Puesto</label>
             <Select 
               options={positions} 
@@ -108,7 +112,7 @@ const UserAdd = () => {
           </div>
           <div className="add-input-container">
             <label htmlFor="profesion">Profesión</label>
-            <input type="text" name="profesion" onChange={(e) => {setDesarrollador({...desarrollador, profesion: e.target.value})}} value={desarrollador.profesion}  required />
+            <input type="text" name="profesion" minLength='4' maxLength='25' onChange={(e) => {setDesarrollador({...desarrollador, profesion: e.target.value})}} value={desarrollador.profesion}  required />
             <label htmlFor="tecnologia">Tecnología</label>
             <Select 
               options={technologies} 
@@ -130,8 +134,8 @@ const UserAdd = () => {
           </button>
         </div>
       </form>
-      {success ? <p className="success-text">Developer creado con éxito!</p> : null}
-      {textError ? <p className="error-text">- Los campos Nombre y Profesión deben contener más de 3 caracteres</p> : null}
+      {success ? <p className="success-text">- Developer creado con éxito!</p> : null}
+      {textError ? <p className="error-text">- Los campos Nombre y Profesión deben contener más de 3 y menos de 25 caracteres y no poseer signos especiales.</p> : null}
       </div>
     </div>
   )

@@ -29,7 +29,8 @@
 }
 .profile div p {
   margin: 0;
-}
-.profile div p:last-of-type{
   color: #B9B9C3;
+}
+.profile a {
+  color: black;
 }
